@@ -1,0 +1,12 @@
+.Light{
+    background-color: whitesmoke;
+    color: black;
+    font-weight: 600;
+    min-height: 100svh;
+}
+.Dark{
+    background-color: rgb(61, 61, 61);
+    color: white;
+    font-weight: 700;
+    min-height: 100svh;
+}
