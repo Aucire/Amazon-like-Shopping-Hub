@@ -2,21 +2,22 @@ import { useContext } from "react"
 import ApiContext from "../apiContext"
 import { ProductCard } from "./productcard"
 
-export const Dashboard=()=>{
+export const Dashboard = () => {
 
-    const api=useContext(ApiContext)
+    const api = useContext(ApiContext)
 
-    return(
+    return (
         <>
-        <h1>DASHBOARD PAGE</h1>
-
-        <section className="grid grid-cols-4 gap-4">
-            {api.map(product=>(
-                <div key={product.id}>
-                    <ProductCard product={product}/>                    
+            <div className="container">
+                <h1 className="section-title my-5">📦 Our Products</h1>
+                <div className="products-grid">
+                    {api.map(product => (
+                        <div key={product.id}>
+                            <ProductCard product={product} />
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </section>
+            </div>
         </>
     )
 }

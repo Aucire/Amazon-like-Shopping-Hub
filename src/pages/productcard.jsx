@@ -3,19 +3,30 @@ import CartContext from "../cartContext"
 import { useContext } from "react"
 
 
-export const ProductCard=({product})=>{
-    const {cart,setCart} = useContext(CartContext)
+export const ProductCard = ({ product }) => {
+    const { cart, setCart } = useContext(CartContext)
+    const [added, setAdded] = useState(false)
 
-    const clickFn=()=>{setCart(prev=>[...prev,product]) }
+    const clickFn = () => {
+        setCart(prev => [...prev, product])
+        setAdded(true)
+        setTimeout(() => setAdded(false), 2000)
+    }
 
-    return(
-        <div className="border border-gray-400 border-4 rounded-xl w-75 min-h-100">
-            <img src={product.image} alt="Product Image" className="h-75 w-75" />
-            <h1 className="text-red-600">{product.title}</h1>
+    return (
+        <div className="product-card">
+            <img src={product.image} alt={product.title} />
+            <h3>{product.title}</h3>
             <p>{product.description}</p>
-            <button className="border border-green-700 rounded-lg border-2 ml-1 px-3">{product.price}</button><br/>
-
-            <button onClick={clickFn} className="border border-green-700 rounded-lg border-2 ml-1 px-3">Add to cart</button>
+            <div className="d-flex justify-content-between align-items-center px-3 mt-auto pb-3">
+                <span className="product-price">${product.price.toFixed(2)}</span>
+                <button
+                    onClick={clickFn}
+                    className={`btn ${added ? 'btn-success' : 'btn-cart'}`}
+                >
+                    {added ? '✓ Added' : '🛒 Add to Cart'}
+                </button>
+            </div>
         </div>
     )
 }
